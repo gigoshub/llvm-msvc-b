@@ -29,7 +29,7 @@ jobs:
         $releases = Invoke-RestMethod "https://api.github.com/repos/backengineering/llvm-msvc/releases/latest"
         $installer = $releases.assets | Where-Object { $_.name -like "*installer-PDB*" } | Select-Object -First 1
         Invoke-WebRequest -Uri $installer.browser_download_url -OutFile "llvm-msvc-installer.exe"
-        Start-Process -FilePath "llvm-msvc-installer.exe" -ArgumentList "/S" -Wait
+        Start-Process -FilePath "llvm-msvc-installer.exe" -ArgumentList "/Silent" -Wait
 
     - name: Build llvm-msvc
       shell: powershell
